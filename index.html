@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repeticije za osnovnu školu – Anita</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #7a3d0e;
+      --navy-light: #c45e1a;
+      --sky:    #fdf3ea;
+      --sky-mid: #f5dfc8;
+      --white:  #ffffff;
+      --grey:   #faf7f4;
+      --text:   #3d2b1a;
+      --muted:  #8a7060;
+      --warm-muted: #a08060;
+      --green:  #25d366;
+      --green-dark: #1ebe5d;
+      --accent: #e8821a;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(122,61,14,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    h1, h2, h3, h4, .logo {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--sky-mid);
+
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+    nav a.nav-cta {
+      background: var(--green);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 9px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    nav a.nav-cta:hover { background: var(--green-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(145deg, #7a3d0e 0%, #c45e1a 100%);
+      color: var(--white);
+      padding: 64px 20px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: rgba(232,130,26,0.15);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 220px; height: 220px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(247,168,0,0.20);
+      border: 1px solid rgba(247,168,0,0.40);
+      color: #ffd060;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(1.7rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero p.subtitle {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+
+    /* subjects chips */
+    .subjects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .chip {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 50px;
+    }
+
+    .hero-format {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 32px;
+    }
+    .hero-format strong { color: #fff; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.15s, background 0.2s;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.35);
+    }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-primary svg { width: 20px; height: 20px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 56px 20px; }
+    .section-inner { max-width: 680px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy-light);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    p { margin-bottom: 14px; color: var(--text); }
+
+    /* bullet list */
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.97rem;
+    }
+    .bullet-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 8px; height: 8px;
+      margin-top: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* alternating bg */
+    .bg-grey { background: var(--grey); }
+    .bg-sky   { background: var(--sky); }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (min-width: 520px) {
+      .card-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border-top: 3px solid var(--navy-light);
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .card .price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy-light);
+      margin-bottom: 10px;
+    }
+    .card .duration {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .card .ideal-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    /* highlight card */
+    .card.featured {
+      border-top-color: var(--accent);
+      background: linear-gradient(135deg, #fffbf0 0%, var(--white) 100%);
+    }
+    .card.featured .price { color: var(--accent); }
+    .badge-pop {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+    details {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    summary {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy);
+      padding: 18px 20px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--navy-light);
+      transition: transform 0.2s;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 20px 18px;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    /* ── BOOKING ── */
+    .booking-section {
+      background: linear-gradient(135deg, #7a3d0e 0%, #c45e1a 100%);
+      color: #fff;
+      text-align: center;
+      padding: 64px 20px;
+    }
+    .booking-section h2 { color: #fff; }
+    .booking-section p { color: rgba(255,255,255,0.85); }
+    .booking-section .bullet-list li { color: rgba(255,255,255,0.9); }
+    .booking-section .bullet-list li::before { background: #ffd060; }
+
+    .whatsapp-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin: 24px 0;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.82rem;
+    }
+    footer a { color: rgba(255,255,255,0.75); }
+
+    /* ── PROCESS STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 34px; height: 34px;
+      background: var(--navy);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-text { font-size: 0.95rem; }
+    .step-text strong {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    /* divider */
+    .divider {
+      width: 48px; height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* about block */
+    .about-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--navy-light);
+      margin-top: 24px;
+    }
+    .about-card p { margin-bottom: 10px; font-size: 0.97rem; }
+
+    /* digital materials */
+    .material-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .material-card .mat-info p { margin: 0; font-size: 0.93rem; }
+    .material-card .mat-info strong {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .material-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--navy-light);
+      white-space: nowrap;
+    }
+
+    /* contact */
+    .contact-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .contact-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.15s;
+    }
+    .contact-item:hover { transform: translateY(-2px); }
+    .contact-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ci-green { background: #e6faf0; }
+    .ci-blue  { background: #e8f1fa; }
+    .ci-grey  { background: var(--grey); }
+    .contact-item span { font-size: 0.93rem; }
+
+    /* floating whatsapp */
+    .fab {
+      position: fixed;
+      bottom: 24px; right: 20px;
+      z-index: 200;
+      background: var(--green);
+      color: #fff;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      transition: transform 0.2s;
+    }
+    .fab:hover { transform: scale(1.08); }
+    .fab svg { width: 28px; height: 28px; }
+
+    @media (min-width: 680px) {
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="justify-content:center;">
+  <div style="font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:600;color:var(--warm-muted);letter-spacing:1px;">Repeticije za osnovnu školu</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">1. – 8. razred</div>
+  <h1>Repeticije za<br>osnovnu školu</h1>
+  <p class="subtitle">Individualan pristup svakom učeniku. Fokus na razumijevanju gradiva, samopouzdanju i sigurnosti na testovima.</p>
+
+  <p class="subtitle" style="margin-bottom:32px;">Repeticije iz matematike i teorijskih predmeta — po dogovoru.</p>
+
+  <p class="hero-format"><strong>Online</strong> ili <strong>uživo</strong> — Podstrana, Split i okolica</p>
+
+  <a class="btn-primary" href="https://wa.me/385923244474?text=Pozdrav%20Anita%2C%20zanima%20me%20vi%C5%A1e%20o%20repeticijama." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.852L0 24l6.334-1.508A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.004-1.369l-.359-.213-3.761.896.956-3.659-.234-.376A9.816 9.816 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+    Rezervirajte termin
+  </a>
+</section>
+
+<!-- TRUST BLOCK -->
+<section class="bg-grey">
+  <div class="section-inner">
+    <div class="section-label">Zašto repeticije?</div>
+    <div class="divider"></div>
+    <h2>Kada su repeticije najkorisnije?</h2>
+    <ul class="bullet-list">
+      <li>Dijete ne razumije objašnjenje iz škole</li>
+      <li>Gubi samopouzdanje u predmetu</li>
+      <li>Treba pripremu za test ili ispitivanje</li>
+      <li>Ima puno propuštenog gradiva</li>
+      <li>Treba miran i individualan pristup</li>
+    </ul>
+  </div>
+</section>
+
+<!-- O MENI -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">O meni</div>
+    <div class="divider"></div>
+    <h2>Pozdrav, ja sam Anita 👋</h2>
+    <div class="about-card">
+      <p>Već godinama pomažem djeci u savladavanju školskog gradiva. Sve je počelo spontano — kroz pomoć djeci u okruženju, a danas su repeticije službeni dio mog obrta.</p>
+      <p>Najviše radim <strong>matematiku</strong>, ali pomažem i u drugim predmetima te pripremi za testove i ispite. Radim isključivo <strong>individualno (1 na 1)</strong> — jer svako dijete zaslužuje punu pažnju.</p>
+      <p>Moj cilj nije samo riješiti zadatak. Cilj je da dijete <em>razumije</em> gradivo, razvije sigurnost u učenju i nauči kako učiti.</p>
+    </div>
+    <br>
+    <p><strong>Djeca kod mene uče:</strong></p>
+    <ul class="bullet-list">
+      <li>Kako učiti efikasno i bez stresa</li>
+      <li>Kako organizirati gradivo i pripremiti se za test</li>
+      <li>Kako samostalno rješavati zadatke</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRISTUP -->
+<section class="bg-sky">
+  <div class="section-inner">
+    <div class="section-label">Pedagoški pristup</div>
+    <div class="divider"></div>
+    <h2>Moj pristup učenju</h2>
+    <p>Svako dijete uči drugačije — netko treba više primjera, netko više vježbe, netko samo miran prostor bez pritiska.</p>
+    <p>Rad je potpuno <strong>individualan i prilagođen tempu učenika</strong>. Ne jurim kroz gradivo samo da bismo "prošli" sve — važnije mi je da dijete ode kući s razumijevanjem, a ne samo s riješenim zadacima.</p>
+    <p>Radimo polako, korak po korak, dok se ne postavi čvrsta osnova. Jer sigurnost u gradivu gradi i <strong>sigurnost u djetetu</strong>.</p>
+  </div>
+</section>
+
+<!-- KAKO IZGLEDA SAT -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">Tijek sata</div>
+    <div class="divider"></div>
+    <h2>Kako izgleda sat?</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Kratki razgovor o problemu</strong>
+          Gdje je zastoj? Što je dijete propustilo? Što ga muči?
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Objašnjenje gradiva</strong>
+          Jasno, bez žurbe, prilagođeno razredu i načinu razmišljanja djeteta.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Rješavanje zadataka</strong>
+          Zajedno, pa samostalno — da vidimo je li gradivo stvarno sjelo.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>Priprema za testove</strong>
+          Ponavljanje ključnih pojmova i tipičnih zadataka koji izlaze na testovima.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>Kratki sažetak za učenje</strong>
+          Dijete odlazi s jasnim pregledom što treba znati.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VRSTE SATOVA -->
+<section class="bg-grey">
+  <div class="section-inner">
+    <div class="section-label">Cijene</div>
+    <div class="divider"></div>
+    <h2>Vrste satova</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Jednokratni sat</h3>
+        <div class="price">15 €</div>
+        <div class="duration">45 min · samo online</div>
+        <div class="ideal-label">Idealno za:</div>
+        <ul class="bullet-list">
+          <li>Pomoć oko domaće zadaće</li>
+          <li>Pripremu za test</li>
+          <li>Ponavljanje gradiva</li>
+        </ul>
+      </div>
+      <div class="card featured">
+        <div class="badge-pop">Preporučeno</div>
+        <h3>Blok sat</h3>
+        <div class="price">30 €</div>
+        <div class="duration">90 min · online ili uživo</div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0;">Za detaljnije objašnjavanje gradiva i veću količinu zadataka.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAKETI -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">Paketi</div>
+    <div class="divider"></div>
+    <h2>Paketi za redovitu pomoć</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Tjedni paket</h3>
+        <div class="price">80 €</div>
+        <div class="duration">6 sati</div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0;">Za učenike koji trebaju redovitiju pomoć i praćenje napretka.</p>
+      </div>
+      <div class="card featured">
+        <div class="badge-pop">Najpopularniji</div>
+        <h3>Intenzivni paket</h3>
+        <div class="price">150 €</div>
+        <div class="duration">12 sati</div>
+        <p style="font-size:0.9rem;color:var(--muted);margin:0;">Za učenike s većim nedostacima u gradivu ili pripremu za važne testove.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITALNI MATERIJALI -->
+<section class="bg-sky">
+  <div class="section-inner">
+    <div class="section-label">Dodatno učenje</div>
+    <div class="divider"></div>
+    <h2>Sažeci i zadaci za vježbu</h2>
+    <p>Za dodatno vježbanje kod kuće — dostupni iz svih predmeta, korisno i između satova.</p>
+    <div class="material-card">
+      <div class="mat-info">
+        <strong>Jedna lekcija</strong>
+        <p>Sažetak + 20 zadataka za vježbu</p>
+      </div>
+      <div class="material-price">10 €</div>
+    </div>
+    <div class="material-card">
+      <div class="mat-info">
+        <strong>Paket više lekcija</strong>
+        <p>Sažeci + 30+ zadataka za vježbu</p>
+      </div>
+      <div class="material-price">20 €</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="section-inner">
+    <div class="section-label">Pitanja i odgovori</div>
+    <div class="divider"></div>
+    <h2>Česta pitanja</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Koliko traje sat?</summary>
+        <div class="faq-answer">Online sat traje 45 minuta. Sat uživo traje 2 sata — kraći termini uživo nisu mogući.</div>
+      </details>
+      <details>
+        <summary>Kada radite?</summary>
+        <div class="faq-answer">Termini su po dogovoru — prilagođavam se rasporedima učenika i roditelja. Javite se i dogovorimo što odgovara.</div>
+      </details>
+      <details>
+        <summary>Za koje razrede radite?</summary>
+        <div class="faq-answer">Radim s učenicima od 1. do 8. razreda osnovne škole. Fokus je na učenicima od 5. do 8. razreda — gdje se radi po pojedinim predmetima. Za učenike od 1. do 4. razreda moguće je organizirati pomoć pri učenju i rješavanju zadataka iz svih predmeta.</div>
+      </details>
+      <details>
+        <summary>Što ako dijete ne može doći na zakazani termin?</summary>
+        <div class="faq-answer">Potrebno je javiti najmanje <strong>24 sata ranije</strong>. U suprotnom se termin smatra održanim i naplaćuje se u punom iznosu.</div>
+      </details>
+      <details>
+        <summary>Kako izgleda online sat?</summary>
+        <div class="faq-answer">Online satovi odvijaju se putem video poziva (npr. Zoom, Google Meet ili WhatsApp). Sve što je potrebno jest uređaj s kamerom i mikrofon.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking-section">
+  <div class="section-inner">
+    <div class="section-label" style="color:rgba(255,255,255,0.6)">Kontakt</div>
+    <h2>Rezervirajte termin</h2>
+    <p>Ako želite provjeriti odgovara li ovaj način rada vašem djetetu, pošaljite kratku poruku — bez obveze.</p>
+    <br>
+    <p style="margin-bottom:8px;font-size:0.9rem;color:rgba(255,255,255,0.7)">U poruci napišite:</p>
+    <ul class="bullet-list" style="text-align:left;max-width:320px;margin:0 auto 28px;">
+      <li>Razred djeteta</li>
+      <li>Predmet koji treba pokriti</li>
+      <li>Treba li pomoć redovito ili samo za test</li>
+    </ul>
+    <a class="btn-primary" href="https://wa.me/385923244474?text=Pozdrav%20Anita%2C%20zanima%20me%20vi%C5%A1e%20o%20repeticijama." target="_blank" rel="noopener" style="font-size:1.05rem;padding:18px 36px;">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.852L0 24l6.334-1.508A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.004-1.369l-.359-.213-3.761.896.956-3.659-.234-.376A9.816 9.816 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+      Pošaljite WhatsApp poruku
+    </a>
+    <div class="whatsapp-info">
+      <span>+385 92 324 4474</span>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="bg-grey">
+  <div class="section-inner">
+    <div class="section-label">Gdje me pronaći</div>
+    <div class="divider"></div>
+    <h2>Kontakt</h2>
+    <div class="contact-grid">
+      <a class="contact-item" href="https://wa.me/385923244474" target="_blank" rel="noopener">
+        <div class="contact-icon ci-green">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.852L0 24l6.334-1.508A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.004-1.369l-.359-.213-3.761.896.956-3.659-.234-.376A9.816 9.816 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+        </div>
+        <span>+385 92 324 4474</span>
+      </a>
+      <a class="contact-item" href="mailto:kastelancic.anita@gmail.com">
+        <div class="contact-icon ci-blue">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c45e1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <span>kastelancic.anita@gmail.com</span>
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <div class="contact-icon ci-grey">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a7060" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <span>Podstrana · Split · okolica</span>
+      </div>
+      <div class="contact-item" style="cursor:default;">
+        <div class="contact-icon ci-blue">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c45e1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <span>Online — dostupno svugdje</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Anita Kastelanćić · Repeticije za osnovnu školu</p>
+  <p style="margin-top:6px;">Split · Podstrana · Online</p>
+</footer>
+
+<!-- FAB WhatsApp -->
+<a class="fab" href="https://wa.me/385923244474?text=Pozdrav%20Anita%2C%20zanima%20me%20vi%C5%A1e%20o%20repeticijama." target="_blank" rel="noopener" title="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.852L0 24l6.334-1.508A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.004-1.369l-.359-.213-3.761.896.956-3.
